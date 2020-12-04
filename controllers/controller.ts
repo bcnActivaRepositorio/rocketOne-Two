@@ -20,6 +20,7 @@ var text:   string  = "";
 var text1:  string  = "";
 var arrSix: Number[] = [30, 40, 50, 50, 30, 10];
 var arrThree: Number[] = [10, 30, 80];
+var maxSpeed: number = 0;
 // print me 
 var writeMe = (document.querySelector('#textMe')as HTMLElement);
 var writeMe2 = (document.querySelector('#textMe2')as HTMLElement);
@@ -30,9 +31,9 @@ var writeMe2 = (document.querySelector('#textMe2')as HTMLElement);
 function creation(){
  console.log('I do work as I should');
  arrAll.push(rocket1 = new Rocket("32HJKLFR"));
- arrThree.map((e: any) => rocket1.addArrThrusters(thruster = new Thruster(e)));
+ arrThree.map((e: any) => rocket1.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
  arrAll.push(rocket2 = new Rocket("LDSFJA32"));
- arrSix.map((e: any) => rocket2.addArrThrusters(thruster = new Thruster(e)));
+ arrSix.map((e: any) => rocket2.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
  console.log(arrAll);
  console.log(rocket1.toString());
  console.log(rocket2.toString());
@@ -171,7 +172,7 @@ function polishName(str: string){
 }
 // creation of objects
 const newRocket    = (str: string) => arrAll.push(rocket = new Rocket(str));
-const newThrusters = (arr: any) => arr.map((e: any) => rocket.addArrThrusters(thruster = new Thruster(e)));
+const newThrusters = (arr: any) => arr.map((e: any) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
 // final mistake
 function finalMistake(){
    

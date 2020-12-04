@@ -18,6 +18,7 @@ var text = "";
 var text1 = "";
 var arrSix = [30, 40, 50, 50, 30, 10];
 var arrThree = [10, 30, 80];
+var maxSpeed = 0;
 // print me 
 var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
@@ -26,9 +27,9 @@ document.querySelector('#boton2').addEventListener('click', realOne);
 function creation() {
     console.log('I do work as I should');
     arrAll.push(rocket1 = new Rocket("32HJKLFR"));
-    arrThree.map(function (e) { return rocket1.addArrThrusters(thruster = new Thruster(e)); });
+    arrThree.map(function (e) { return rocket1.addArrThrusters(thruster = new Thruster(e, maxSpeed)); });
     arrAll.push(rocket2 = new Rocket("LDSFJA32"));
-    arrSix.map(function (e) { return rocket2.addArrThrusters(thruster = new Thruster(e)); });
+    arrSix.map(function (e) { return rocket2.addArrThrusters(thruster = new Thruster(e, maxSpeed)); });
     console.log(arrAll);
     console.log(rocket1.toString());
     console.log(rocket2.toString());
@@ -47,6 +48,10 @@ function realOne() {
     // keep functions outside
     (numThrusters == 3) ? threeThrusters(name) :
         (numThrusters == 6) ? sixThrusters(name) : finalMistake();
+}
+function fastOne() {
+}
+function fastTwo() {
 }
 /******************************AUX FUNCTIONS**************************************/
 // show the element in the screen
@@ -148,7 +153,7 @@ function myNumber() {
 }
 // creation of objects
 var newRocket = function (str) { return arrAll.push(rocket = new Rocket(str)); };
-var newThrusters = function (arr) { return arr.map(function (e) { return rocket.addArrThrusters(thruster = new Thruster(e)); }); };
+var newThrusters = function (arr) { return arr.map(function (e) { return rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)); }); };
 // final mistake
 function finalMistake() {
     console.log(" A 404(Not Found) Error. Start again pls");

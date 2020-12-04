@@ -1,8 +1,9 @@
 "use strict";
 console.log("thrusters ts works");
 var Thruster = /** @class */ (function () {
-    function Thruster(power) {
+    function Thruster(power, maxPower) {
         this.power = power;
+        this.maxPower = maxPower;
     }
     Object.defineProperty(Thruster.prototype, "myPower", {
         // get & set
@@ -15,15 +16,17 @@ var Thruster = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Object.defineProperty(Thruster.prototype, "myMaxPower", {
+        get: function () {
+            return this.maxPower;
+        },
+        set: function (maxPower) {
+            this.maxPower = maxPower;
+        },
+        enumerable: false,
+        configurable: true
+    });
     // methods
-    Thruster.prototype.addPower = function () {
-        this.power = this.power + 10;
-        return this.power;
-    };
-    Thruster.prototype.takePower = function () {
-        this.power = this.power - 10;
-        return this.power;
-    };
     Thruster.prototype.toString = function () {
         console.log('tostyring thruster works');
     };
