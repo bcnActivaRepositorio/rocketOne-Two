@@ -25,7 +25,16 @@ class Rocket {
         let showThem: any = this.arrThrusters.map((e: any) => e.power);
         return showThem;
     }
-
+    public accelerate(){
+        this.arrThrusters.map((e: any) => (e.power == 0) ? e.maxPower = e.maxPower : e.maxPower = e.maxPower + 10);
+        this.arrThrusters.map((e: any) => (e.power == 0) ? e.power = 0 : e.power = e.power - 10);
+        return this.arrThrusters;
+    }
+    public brake(){
+        this.arrThrusters.map((e: any) => (e.maxPower == 0) ? e.power = e.power : e.power = e.power + 10);
+        this.arrThrusters.map((e: any) => (e.maxPower == 0) ? e.maxPower = 0 : e.maxPower = e.maxPower - 10);
+        return this.arrThrusters;
+    }
     public toString(){
         console.log('tostring works');
         let text: string = "";

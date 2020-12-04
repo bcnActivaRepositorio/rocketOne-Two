@@ -11,6 +11,10 @@ var rocket1;
 var rocket2;
 // get to action fakes
 document.getElementById('boton1').addEventListener('click', creation);
+document.getElementById('boton3').addEventListener('click', fastOne);
+document.getElementById('boton4').addEventListener('click', slowOne);
+document.getElementById('boton5').addEventListener('click', fastTwo);
+document.getElementById('boton6').addEventListener('click', slowTwo);
 // helpers
 var counter = 0;
 var found = false;
@@ -50,8 +54,28 @@ function realOne() {
         (numThrusters == 6) ? sixThrusters(name) : finalMistake();
 }
 function fastOne() {
+    var showMe = faster(rocket1);
+    console.log(showMe);
+    var arrSpeed = rocket1.showThrusters();
+    console.log(arrSpeed);
+}
+function slowOne() {
+    var showMe = brakes(rocket1);
+    console.log(showMe);
+    var arrSpeed = rocket1.showThrusters();
+    console.log(arrSpeed);
 }
 function fastTwo() {
+    var showMe = faster(rocket2);
+    console.log(showMe);
+    var arrSpeed = rocket2.showThrusters();
+    console.log(arrSpeed);
+}
+function slowTwo() {
+    var showMe = brakes(rocket2);
+    console.log(showMe);
+    var arrSpeed = rocket2.showThrusters();
+    console.log(arrSpeed);
 }
 /******************************AUX FUNCTIONS**************************************/
 // show the element in the screen
@@ -98,11 +122,17 @@ function sixThrusters(str) {
     writeOne(text);
     writeTwo(text1);
 }
-function faster() {
+function faster(rock) {
     console.log('faster works');
+    rock.accelerate();
+    console.log(rock);
+    return rock;
 }
-function brakes() {
+function brakes(rock) {
     console.log('brake works');
+    rock.brake();
+    console.log(rock);
+    return rock;
 }
 //check if it is in the arr 
 function checkNameRockets(str) {

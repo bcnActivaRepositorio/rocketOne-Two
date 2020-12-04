@@ -27,6 +27,12 @@ var Thruster = /** @class */ (function () {
         configurable: true
     });
     // methods
+    Thruster.prototype.accelerate = function () {
+        if (this.power > 0) {
+            this.power = this.power - 10;
+            this.maxPower = this.maxPower + 10;
+        }
+    };
     Thruster.prototype.toString = function () {
         console.log('tostyring thruster works');
     };
