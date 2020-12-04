@@ -53,6 +53,12 @@ function realOne(){
     ( numThrusters == 6) ? sixThrusters(name) : finalMistake();
 
 }
+function fastOne(){
+    
+}
+function fastTwo(){
+
+}
 
 /******************************AUX FUNCTIONS**************************************/
 // show the element in the screen

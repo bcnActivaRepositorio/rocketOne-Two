@@ -17,6 +17,7 @@ public set myPower(power: number){
     this.power = power;
 }
 // methods
+
 public toString(){
     console.log('tostyring thruster works');
 }
