@@ -24,9 +24,10 @@ var text:   string  = "";
 var text1:  string  = "";
 var arrSix:   Number[] = [30, 40, 50, 50, 30, 10];
 var arrThree: Number[] = [10, 30, 80];
-// containers to display results
-var arrSpeed: Number[] = new Array;
 var maxSpeed: number = 0;
+// containers to display results
+var arrSpeed: number[] = new Array;
+var arrCopy:  Rocket[] = new Array;
 // print me 
 var writeMe = (document.querySelector('#textMe')as HTMLElement);
 var writeMe2 = (document.querySelector('#textMe2')as HTMLElement);
@@ -62,16 +63,25 @@ function realOne(){
 }
 
 function fastOne(){
-    faster(rocket1);
-    arrSpeed = rocket1.showThrusters();
+    faster(arrAll[0]);
+    arrSpeed = arrAll[0].showThrusters();
     console.log(arrSpeed);
+    let sumNum: number = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[0].showMaxPower();
+    let sumNum2: number = addNum(arrSpeed);
+    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
 
 }
 function slowOne(){
     brakes(rocket1);
     arrSpeed= rocket1.showThrusters();
     console.log(arrSpeed);
-
+    let sumNum: number = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[0].showMaxPower();
+    let sumNum2: number = addNum(arrSpeed);
+    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
 }
 
 function fastTwo(){
@@ -139,20 +149,20 @@ function sixThrusters(str: string){
     writeOne(text);
     writeTwo(text1);
 } 
-function faster(rock: Rocket){
-    rock.accelerate();
-    console.log(rock);
-    return rock;
+function faster(obj: Rocket){
+    obj.accelerate();
+    console.log(obj);
+    return obj;
 }
-function brakes(rock: Rocket){
-    rock.brake();
-    console.log(rock);
-    return rock;
+function brakes(obj: Rocket){
+    obj.brake();
+    console.log(obj);
+    return obj;
 }
 //check if it is in the arr 
 function checkNameRockets(str: string){
 
-let findMe = arrAll.find((element: any) => element.name == str);
+let findMe: undefined | Rocket = arrAll.find((element: Rocket) => element.myName == str);
 console.log(findMe)
 return findMe;
 }
@@ -160,7 +170,7 @@ return findMe;
 function myName() {
     // data
     // why the freeking prompt don't take string as data?? JEZZ!!!
-    let inputName: any = (document.querySelector('#rocketName') as HTMLInputElement).value;
+    let inputName: string | any = (document.querySelector("#rocketName") as HTMLInputElement).value;
     //you watch their behaviour
     counter = 0;
     // if already entered
@@ -186,7 +196,7 @@ function polishName(str: string){
  // number thrusters
  function myNumber(){
 
-    let thrusters: any = parseInt((document.getElementById('numberThrusters')as HTMLInputElement).value);
+    let thrusters: number = parseInt((document.getElementById('numberThrusters')as HTMLInputElement).value);
     counter = 0;
 
     while (counter < 3 && (isNaN(thrusters))) {
@@ -201,7 +211,10 @@ function polishName(str: string){
 }
 // creation of objects
 const newRocket    = (str: string) => arrAll.push(rocket = new Rocket(str));
-const newThrusters = (arr: any) => arr.map((e: any) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
+const newThrusters = (arr: any[]) => arr.map((e: number) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
+
+// add operations arr
+const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);
 // final mistake
 function finalMistake(){
    

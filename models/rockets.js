@@ -25,6 +25,10 @@ var Rocket = /** @class */ (function () {
         var showThem = this.arrThrusters.map(function (e) { return e.power; });
         return showThem;
     };
+    Rocket.prototype.showMaxPower = function () {
+        var showThem = this.arrThrusters.map(function (e) { return e.maxPower; });
+        return showThem;
+    };
     Rocket.prototype.accelerate = function () {
         this.arrThrusters.map(function (e) { return (e.power == 0) ? e.maxPower = e.maxPower : e.maxPower = e.maxPower + 10; });
         this.arrThrusters.map(function (e) { return (e.power == 0) ? e.power = 0 : e.power = e.power - 10; });

@@ -22,9 +22,10 @@ var text = "";
 var text1 = "";
 var arrSix = [30, 40, 50, 50, 30, 10];
 var arrThree = [10, 30, 80];
+var maxSpeed = 0;
 // containers to display results
 var arrSpeed = new Array;
-var maxSpeed = 0;
+var arrCopy = new Array;
 // print me 
 var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
@@ -56,14 +57,24 @@ function realOne() {
         (numThrusters == 6) ? sixThrusters(name) : finalMistake();
 }
 function fastOne() {
-    faster(rocket1);
-    arrSpeed = rocket1.showThrusters();
+    faster(arrAll[0]);
+    arrSpeed = arrAll[0].showThrusters();
     console.log(arrSpeed);
+    var sumNum = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[0].showMaxPower();
+    var sumNum2 = addNum(arrSpeed);
+    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
 }
 function slowOne() {
     brakes(rocket1);
     arrSpeed = rocket1.showThrusters();
     console.log(arrSpeed);
+    var sumNum = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[0].showMaxPower();
+    var sumNum2 = addNum(arrSpeed);
+    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
 }
 function fastTwo() {
     faster(rocket2);
@@ -120,19 +131,19 @@ function sixThrusters(str) {
     writeOne(text);
     writeTwo(text1);
 }
-function faster(rock) {
-    rock.accelerate();
-    console.log(rock);
-    return rock;
+function faster(obj) {
+    obj.accelerate();
+    console.log(obj);
+    return obj;
 }
-function brakes(rock) {
-    rock.brake();
-    console.log(rock);
-    return rock;
+function brakes(obj) {
+    obj.brake();
+    console.log(obj);
+    return obj;
 }
 //check if it is in the arr 
 function checkNameRockets(str) {
-    var findMe = arrAll.find(function (element) { return element.name == str; });
+    var findMe = arrAll.find(function (element) { return element.myName == str; });
     console.log(findMe);
     return findMe;
 }
@@ -140,7 +151,7 @@ function checkNameRockets(str) {
 function myName() {
     // data
     // why the freeking prompt don't take string as data?? JEZZ!!!
-    var inputName = document.querySelector('#rocketName').value;
+    var inputName = document.querySelector("#rocketName").value;
     //you watch their behaviour
     counter = 0;
     // if already entered
@@ -180,6 +191,8 @@ function myNumber() {
 // creation of objects
 var newRocket = function (str) { return arrAll.push(rocket = new Rocket(str)); };
 var newThrusters = function (arr) { return arr.map(function (e) { return rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)); }); };
+// add operations arr
+var addNum = function (arr) { return arr.reduce(function (a, b) { return a + b; }); };
 // final mistake
 function finalMistake() {
     console.log(" A 404(Not Found) Error. Start again pls");

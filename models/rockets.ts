@@ -25,6 +25,11 @@ class Rocket {
         let showThem: any = this.arrThrusters.map((e: any) => e.power);
         return showThem;
     }
+    public showMaxPower(){
+        let showThem: any = this.arrThrusters.map((e: any) => e.maxPower);
+        return showThem;
+    }
+
     public accelerate(){
         this.arrThrusters.map((e: any) => (e.power == 0) ? e.maxPower = e.maxPower : e.maxPower = e.maxPower + 10);
         this.arrThrusters.map((e: any) => (e.power == 0) ? e.power = 0 : e.power = e.power - 10);
