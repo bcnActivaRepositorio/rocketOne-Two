@@ -27,13 +27,6 @@ public set myMaxPower(maxPower: number){
     this.maxPower = maxPower;
 }
 // methods
-public accelerate(){
-    if (this.power > 0){
-        this.power = this.power - 10;
-        this.maxPower = this.maxPower + 10;
-    } 
-    
-}
 public toString(){
     console.log('tostyring thruster works');
 }
