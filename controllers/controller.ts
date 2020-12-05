@@ -1,12 +1,12 @@
 "use strict"
 console.log("controller ts works");
-var rocket: Rocket;
+var rocket:   Rocket;
 var thruster: Thruster;
-var arrAll: Rocket[] = new Array;
+var arrAll:   Rocket[] = new Array;
 
 // array for power numbers
 var arrThree: Number[] = new Array;
-var arrSix: Number[] = new Array;
+var arrSix:   Number[] = new Array;
 // fake ones
 var rocket1: Rocket;
 var rocket2: Rocket;
@@ -22,8 +22,10 @@ var counter: number = 0;
 var found:  boolean = false;
 var text:   string  = "";
 var text1:  string  = "";
-var arrSix: Number[] = [30, 40, 50, 50, 30, 10];
+var arrSix:   Number[] = [30, 40, 50, 50, 30, 10];
 var arrThree: Number[] = [10, 30, 80];
+// containers to display results
+var arrSpeed: Number[] = new Array;
 var maxSpeed: number = 0;
 // print me 
 var writeMe = (document.querySelector('#textMe')as HTMLElement);
@@ -60,30 +62,26 @@ function realOne(){
 }
 
 function fastOne(){
-     let showMe: any = faster(rocket1);
-    console.log(showMe);
-    let arrSpeed: any = rocket1.showThrusters();
+    faster(rocket1);
+    arrSpeed = rocket1.showThrusters();
     console.log(arrSpeed);
 
 }
 function slowOne(){
-     let showMe: any = brakes(rocket1);
-    console.log(showMe);
-    let arrSpeed: any = rocket1.showThrusters();
+    brakes(rocket1);
+    arrSpeed= rocket1.showThrusters();
     console.log(arrSpeed);
 
 }
 
 function fastTwo(){
-    let showMe: any = faster(rocket2);
-    console.log(showMe);
-    let arrSpeed: any = rocket2.showThrusters();
+    faster(rocket2);
+    arrSpeed = rocket2.showThrusters();
     console.log(arrSpeed);
 }
 function slowTwo(){
-    let showMe: any = brakes(rocket2);
-   console.log(showMe);
-   let arrSpeed: any = rocket2.showThrusters();
+    brakes(rocket2);
+   arrSpeed = rocket2.showThrusters();
    console.log(arrSpeed);
 
 }
@@ -142,13 +140,11 @@ function sixThrusters(str: string){
     writeTwo(text1);
 } 
 function faster(rock: Rocket){
-    console.log('faster works');
     rock.accelerate();
     console.log(rock);
     return rock;
 }
 function brakes(rock: Rocket){
-    console.log('brake works');
     rock.brake();
     console.log(rock);
     return rock;

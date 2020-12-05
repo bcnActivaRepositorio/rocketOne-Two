@@ -22,6 +22,8 @@ var text = "";
 var text1 = "";
 var arrSix = [30, 40, 50, 50, 30, 10];
 var arrThree = [10, 30, 80];
+// containers to display results
+var arrSpeed = new Array;
 var maxSpeed = 0;
 // print me 
 var writeMe = document.querySelector('#textMe');
@@ -54,27 +56,23 @@ function realOne() {
         (numThrusters == 6) ? sixThrusters(name) : finalMistake();
 }
 function fastOne() {
-    var showMe = faster(rocket1);
-    console.log(showMe);
-    var arrSpeed = rocket1.showThrusters();
+    faster(rocket1);
+    arrSpeed = rocket1.showThrusters();
     console.log(arrSpeed);
 }
 function slowOne() {
-    var showMe = brakes(rocket1);
-    console.log(showMe);
-    var arrSpeed = rocket1.showThrusters();
+    brakes(rocket1);
+    arrSpeed = rocket1.showThrusters();
     console.log(arrSpeed);
 }
 function fastTwo() {
-    var showMe = faster(rocket2);
-    console.log(showMe);
-    var arrSpeed = rocket2.showThrusters();
+    faster(rocket2);
+    arrSpeed = rocket2.showThrusters();
     console.log(arrSpeed);
 }
 function slowTwo() {
-    var showMe = brakes(rocket2);
-    console.log(showMe);
-    var arrSpeed = rocket2.showThrusters();
+    brakes(rocket2);
+    arrSpeed = rocket2.showThrusters();
     console.log(arrSpeed);
 }
 /******************************AUX FUNCTIONS**************************************/
@@ -123,13 +121,11 @@ function sixThrusters(str) {
     writeTwo(text1);
 }
 function faster(rock) {
-    console.log('faster works');
     rock.accelerate();
     console.log(rock);
     return rock;
 }
 function brakes(rock) {
-    console.log('brake works');
     rock.brake();
     console.log(rock);
     return rock;
