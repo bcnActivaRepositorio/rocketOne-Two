@@ -10,7 +10,8 @@ var arrSix = new Array;
 var rocket1;
 var rocket2;
 // get to action fakes
-document.getElementById('boton1').addEventListener('click', creation);
+document.getElementById('boton1').addEventListener('click', createOne);
+document.getElementById('boton7').addEventListener('click', createTwo);
 document.getElementById('boton3').addEventListener('click', fastOne);
 document.getElementById('boton4').addEventListener('click', slowOne);
 document.getElementById('boton5').addEventListener('click', fastTwo);
@@ -31,19 +32,17 @@ var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
 // lets get real
 document.querySelector('#boton2').addEventListener('click', realOne);
-function creation() {
-    console.log('I do work as I should');
-    arrAll.push(rocket1 = new Rocket("32HJKLFR"));
-    arrThree.map(function (e) { return rocket1.addArrThrusters(thruster = new Thruster(e, maxSpeed)); });
-    arrAll.push(rocket2 = new Rocket("LDSFJA32"));
-    arrSix.map(function (e) { return rocket2.addArrThrusters(thruster = new Thruster(e, maxSpeed)); });
+function createOne() {
+    var name = ("32HJKLFR");
+    threeThrusters(name);
     console.log(arrAll);
-    console.log(rocket1.toString());
-    console.log(rocket2.toString());
-    displayFields('divShow1');
-    text = rocket1.toString() + " & " + rocket2.toString();
-    writeMe.innerHTML = text;
-    dissapear();
+    displayFields('divShow2');
+}
+function createTwo() {
+    var name = ("LDSFJA32");
+    sixThrusters(name);
+    console.log(arrAll);
+    displayFields('divShow3');
 }
 // "One ring to rule them all" (J.R.R. Tolkien)
 function realOne() {
@@ -57,6 +56,7 @@ function realOne() {
         (numThrusters == 6) ? sixThrusters(name) : finalMistake();
 }
 function fastOne() {
+    clearFields2();
     faster(arrAll[0]);
     arrSpeed = arrAll[0].showThrusters();
     console.log(arrSpeed);
@@ -65,26 +65,60 @@ function fastOne() {
     arrSpeed = arrAll[0].showMaxPower();
     var sumNum2 = addNum(arrSpeed);
     console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    writeOne(text);
+    (sumNum == 0) ? text1 = "No more power available. MaxPower of " + sumNum2 + " reached" :
+        text1 = (" " + rocket.myName + ": " + rocket.showThrusters());
+    writeTwo(text1);
 }
 function slowOne() {
-    brakes(rocket1);
-    arrSpeed = rocket1.showThrusters();
+    clearFields2();
+    brakes(arrAll[0]);
+    arrSpeed = arrAll[0].showThrusters();
     console.log(arrSpeed);
     var sumNum = addNum(arrSpeed);
     console.log(sumNum);
     arrSpeed = arrAll[0].showMaxPower();
     var sumNum2 = addNum(arrSpeed);
     console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    writeOne(text);
+    (sumNum2 == 0) ? text1 = "Full power available. MaxPower of " + sumNum2 + " to be reached" :
+        text1 = (" " + rocket.myName + ": " + rocket.showThrusters());
+    writeTwo(text1);
 }
 function fastTwo() {
-    faster(rocket2);
-    arrSpeed = rocket2.showThrusters();
+    clearFields2();
+    console.log(arrAll[1]);
+    faster(arrAll[1]);
+    arrSpeed = arrAll[1].showThrusters();
     console.log(arrSpeed);
+    var sumNum = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[1].showMaxPower();
+    var sumNum2 = addNum(arrSpeed);
+    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    writeOne(text);
+    (sumNum == 0) ? text1 = "No more power available. MaxPower of " + sumNum2 + " reached" :
+        text1 = (" " + rocket.myName + ": " + rocket.showThrusters());
+    writeTwo(text1);
 }
 function slowTwo() {
-    brakes(rocket2);
-    arrSpeed = rocket2.showThrusters();
+    clearFields2();
+    brakes(arrAll[1]);
+    arrSpeed = arrAll[1].showThrusters();
     console.log(arrSpeed);
+    var sumNum = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[1].showMaxPower();
+    var sumNum2 = addNum(arrSpeed);
+    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    writeOne(text);
+    (sumNum2 == 0) ? text1 = "Full power available. MaxPower of " + sumNum2 + " to be reached" :
+        text1 = (" " + rocket.myName + ": " + rocket.showThrusters());
+    writeTwo(text1);
 }
 /******************************AUX FUNCTIONS**************************************/
 // show the element in the screen
@@ -146,6 +180,12 @@ function checkNameRockets(str) {
     var findMe = arrAll.find(function (element) { return element.myName == str; });
     console.log(findMe);
     return findMe;
+}
+function positionArr() {
+    var num = "0";
+    for (num in arrAll) {
+        num;
+    }
 }
 // Name rocket
 function myName() {
