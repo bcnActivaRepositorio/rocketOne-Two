@@ -10,16 +10,18 @@ var arrSix:   Number[] = new Array;
 // fake ones
 var rocket1: Rocket;
 var rocket2: Rocket;
+//add visible fakes
 // get to action fakes
 (document.getElementById('boton1') as HTMLInputElement).addEventListener('click', createOne);
 (document.getElementById('boton7') as HTMLInputElement).addEventListener('click', createTwo);
 (document.getElementById('boton3') as HTMLInputElement).addEventListener('click', fastOne);
 (document.getElementById('boton4') as HTMLInputElement).addEventListener('click', slowOne);
-(document.getElementById('boton5') as HTMLInputElement).addEventListener('click', fastTwo );
+(document.getElementById('boton5') as HTMLInputElement).addEventListener('click', fastTwo);
 (document.getElementById('boton6') as HTMLInputElement).addEventListener('click', slowTwo);
 
 // helpers
 var counter: number = 0;
+var i: number | any = 0;
 var found:  boolean = false;
 var text:   string  = "";
 var text1:  string  = "";
@@ -30,8 +32,8 @@ var maxSpeed: number = 0;
 var arrSpeed: number[] = new Array;
 var arrCopy:  Rocket[] = new Array;
 // print me 
-var writeMe = (document.querySelector('#textMe')as HTMLElement);
-var writeMe2 = (document.querySelector('#textMe2')as HTMLElement);
+var writeMe: HTMLElement = (document.querySelector('#textMe')as HTMLElement);
+var writeMe2:HTMLElement = (document.querySelector('#textMe2')as HTMLElement);
 
 // lets get real
 (document.querySelector('#boton2') as HTMLInputElement).addEventListener('click',realOne);
@@ -64,64 +66,75 @@ function realOne(){
 
 function fastOne(){
     clearFields2();
-    faster(arrAll[0]);
-    arrSpeed = arrAll[0].showThrusters();
+    arrDivShow('divShow2');
+    i = indexBotton();
+    faster(arrAll[i]);
+    arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
     let sumNum: number = addNum(arrSpeed);
     console.log(sumNum);
-    arrSpeed = arrAll[0].showMaxPower();
+    arrSpeed = arrAll[i].showMaxPower();
     let sumNum2: number = addNum(arrSpeed);
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     writeOne(text);
     (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` : 
-                    text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
+                    text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     
     writeTwo(text1);
+    arrDivHide('divShow2');
 }
 function slowOne(){
     clearFields2();
-    brakes(arrAll[0]);
-    arrSpeed= arrAll[0].showThrusters();
+    arrDivShow('divShow2');
+    i = indexBotton();
+    brakes(arrAll[i]);
+    arrSpeed= arrAll[i].showThrusters();
     console.log(arrSpeed);
     let sumNum: number = addNum(arrSpeed);
     console.log(sumNum);
-    arrSpeed = arrAll[0].showMaxPower();
+    arrSpeed = arrAll[i].showMaxPower();
     let sumNum2: number = addNum(arrSpeed);
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     writeOne(text);
     (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` : 
-                     text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
+                     text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     writeTwo(text1);
+    arrDivHide('divShow2');
 }
 
 function fastTwo(){
     clearFields2();
-    console.log(arrAll[1]);
-    faster(arrAll[1]);
-    arrSpeed = arrAll[1].showThrusters();
+    arrDivShow('divShow3');
+    i = indexBotton();
+    console.log(arrAll[i]);
+    faster(arrAll[i]);
+    arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
     let sumNum: number = addNum(arrSpeed);
     console.log(sumNum);
-    arrSpeed = arrAll[1].showMaxPower();
+    arrSpeed = arrAll[i].showMaxPower();
     let sumNum2: number = addNum(arrSpeed);
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     writeOne(text);
     (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` : 
-    text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
+    text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
 
 writeTwo(text1);
+arrDivHide('divShow3');
 }
 function slowTwo(){
     clearFields2();
-    brakes(arrAll[1]);
-   arrSpeed = arrAll[1].showThrusters();
+    arrDivShow('divShow3');
+    i = indexBotton();
+    brakes(arrAll[i]);
+   arrSpeed = arrAll[i].showThrusters();
    console.log(arrSpeed);
    let sumNum: number = addNum(arrSpeed);
     console.log(sumNum);
-    arrSpeed = arrAll[1].showMaxPower();
+    arrSpeed = arrAll[i].showMaxPower();
     let sumNum2: number = addNum(arrSpeed);
 
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
@@ -129,8 +142,9 @@ function slowTwo(){
     writeOne(text);
 
     (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` : 
-    text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
+    text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     writeTwo(text1);
+    arrDivHide('divShow3');
 
 }
 
@@ -140,6 +154,16 @@ function slowTwo(){
 function displayFields(str: string): void{
 
     (document.getElementById(str) as HTMLInputElement).classList.remove('d-none');
+    
+}
+function arrDivShow(str: string): void{
+
+    (document.getElementById(str) as HTMLInputElement).classList.add('visible');
+    
+}
+function arrDivHide(str: string): void{
+
+    (document.getElementById(str) as HTMLInputElement).classList.remove('visible');
     
 }
 
@@ -198,6 +222,24 @@ function brakes(obj: Rocket){
     obj.brake();
     console.log(obj);
     return obj;
+}
+// find the index of the boton
+function indexBotton(){
+    let findDiv:HTMLCollection = (document.getElementsByClassName("showDiv"));
+    let pickMe: HTMLCollection = document.getElementsByClassName("visible");
+    counter = 0;
+    for (let i: number = 0; i < findDiv.length; i++){
+        if(findDiv[i].isEqualNode(pickMe[0]) ){
+            console.log("finally worked");
+            counter = i;
+        } else {
+            console.log("Keep searching");
+        
+        }
+        
+    }
+    
+   return counter;
 }
 //check if it is in the arr 
 function checkNameRockets(str: string){
