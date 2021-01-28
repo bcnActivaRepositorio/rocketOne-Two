@@ -1,49 +1,45 @@
 "use strict";
 console.log("rockets ts works");
-var Rocket = /** @class */ (function () {
+class Rocket {
     // construtor
-    function Rocket(name) {
+    constructor(name) {
         this.arrThrusters = new Array;
         this.name = name;
     }
-    Object.defineProperty(Rocket.prototype, "myName", {
-        // get and set
-        get: function () {
-            return this.name;
-        },
-        set: function (name) {
-            this.name = name;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    // get and set
+    get myName() {
+        return this.name;
+    }
+    set myName(name) {
+        this.name = name;
+    }
     // methods therefore comportament
-    Rocket.prototype.addArrThrusters = function (thruster) {
+    addArrThrusters(thruster) {
         this.arrThrusters.push(thruster);
-    };
-    Rocket.prototype.showThrusters = function () {
-        var showThem = this.arrThrusters.map(function (e) { return e.power; });
+    }
+    showThrusters() {
+        let showThem = this.arrThrusters.map((e) => e.power);
         return showThem;
-    };
-    Rocket.prototype.showMaxPower = function () {
-        var showThem = this.arrThrusters.map(function (e) { return e.maxPower; });
+    }
+    showMaxPower() {
+        let showThem = this.arrThrusters.map((e) => e.maxPower);
         return showThem;
-    };
-    Rocket.prototype.accelerate = function () {
-        this.arrThrusters.map(function (e) { return (e.power == 0) ? e.maxPower = e.maxPower : e.maxPower = e.maxPower + 10; });
-        this.arrThrusters.map(function (e) { return (e.power == 0) ? e.power = 0 : e.power = e.power - 10; });
+    }
+    accelerate() {
+        this.arrThrusters.map((e) => (e.power == 0) ? e.maxPower = e.maxPower : e.maxPower = e.maxPower + 10);
+        this.arrThrusters.map((e) => (e.power == 0) ? e.power = 0 : e.power = e.power - 10);
         return this.arrThrusters;
-    };
-    Rocket.prototype.brake = function () {
-        this.arrThrusters.map(function (e) { return (e.maxPower == 0) ? e.power = e.power : e.power = e.power + 10; });
-        this.arrThrusters.map(function (e) { return (e.maxPower == 0) ? e.maxPower = 0 : e.maxPower = e.maxPower - 10; });
+    }
+    brake() {
+        this.arrThrusters.map((e) => (e.maxPower == 0) ? e.power = e.power : e.power = e.power + 10);
+        this.arrThrusters.map((e) => (e.maxPower == 0) ? e.maxPower = 0 : e.maxPower = e.maxPower - 10);
         return this.arrThrusters;
-    };
-    Rocket.prototype.toString = function () {
+    }
+    toString() {
         console.log('tostring works');
-        var text = "";
-        text = this.name + " rocket with " + this.arrThrusters.length + " thrusters ready to operate";
+        let text = "";
+        text = `${this.name} rocket with ${this.arrThrusters.length} thrusters ready to operate`;
         return text;
-    };
-    return Rocket;
-}());
+    }
+}
+//# sourceMappingURL=rockets.js.map

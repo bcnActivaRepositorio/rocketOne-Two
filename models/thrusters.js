@@ -1,34 +1,26 @@
 "use strict";
 console.log("thrusters ts works");
-var Thruster = /** @class */ (function () {
-    function Thruster(power, maxPower) {
+class Thruster {
+    constructor(power, maxPower) {
         this.power = power;
         this.maxPower = maxPower;
     }
-    Object.defineProperty(Thruster.prototype, "myPower", {
-        // get & set
-        get: function () {
-            return this.power;
-        },
-        set: function (power) {
-            this.power = power;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(Thruster.prototype, "myMaxPower", {
-        get: function () {
-            return this.maxPower;
-        },
-        set: function (maxPower) {
-            this.maxPower = maxPower;
-        },
-        enumerable: false,
-        configurable: true
-    });
+    // get & set
+    get myPower() {
+        return this.power;
+    }
+    set myPower(power) {
+        this.power = power;
+    }
+    get myMaxPower() {
+        return this.maxPower;
+    }
+    set myMaxPower(maxPower) {
+        this.maxPower = maxPower;
+    }
     // methods
-    Thruster.prototype.toString = function () {
+    toString() {
         console.log('tostyring thruster works');
-    };
-    return Thruster;
-}());
+    }
+}
+//# sourceMappingURL=thrusters.js.map

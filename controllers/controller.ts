@@ -14,6 +14,7 @@ var rocket2: Rocket;
 // get to action fakes
 (document.getElementById('boton1') as HTMLInputElement).addEventListener('click', createOne);
 (document.getElementById('boton7') as HTMLInputElement).addEventListener('click', createTwo);
+(document.getElementById('boton8') as HTMLInputElement).addEventListener('click', realOne);
 (document.getElementById('boton3') as HTMLInputElement).addEventListener('click', fastOne);
 (document.getElementById('boton4') as HTMLInputElement).addEventListener('click', slowOne);
 (document.getElementById('boton5') as HTMLInputElement).addEventListener('click', fastTwo);
@@ -40,13 +41,15 @@ var writeMe2:HTMLElement = (document.querySelector('#textMe2')as HTMLElement);
 
 function createOne(){
 let name: string = ("32HJKLFR");
- threeThrusters(name);
+let num:  number = 3;
+ numThrusters(name, num);
  console.log(arrAll);
   displayFields('divShow2');
 }
 function createTwo(){
 let name: string = ("LDSFJA32");
-sixThrusters(name);
+let num:  number = 6;
+numThrusters(name, num);
 console.log(arrAll);
 displayFields('divShow3');
 
@@ -54,13 +57,15 @@ displayFields('divShow3');
 // "One ring to rule them all" (J.R.R. Tolkien)
 function realOne(){
     console.log('real works');
+    clearFields();
+    clearFields2();
+    displayFields('divShow1');
     // data from name
     let name: string = myName();
     // data from number
-    let numThrusters = myNumber();
+    let numbers = myNumber();
     // keep functions outside
-    ( numThrusters == 3) ? threeThrusters(name) :
-    ( numThrusters == 6) ? sixThrusters(name) : finalMistake();
+    ( numbers == 3 || 6) ? numThrusters(name, numbers)  : finalMistake();
 
 }
 
@@ -84,26 +89,6 @@ function fastOne(){
     writeTwo(text1);
     arrDivHide('divShow2');
 }
-function slowOne(){
-    clearFields2();
-    arrDivShow('divShow2');
-    i = indexBotton();
-    brakes(arrAll[i]);
-    arrSpeed= arrAll[i].showThrusters();
-    console.log(arrSpeed);
-    let sumNum: number = addNum(arrSpeed);
-    console.log(sumNum);
-    arrSpeed = arrAll[i].showMaxPower();
-    let sumNum2: number = addNum(arrSpeed);
-    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
-    text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
-    writeOne(text);
-    (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` : 
-                     text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
-    writeTwo(text1);
-    arrDivHide('divShow2');
-}
-
 function fastTwo(){
     clearFields2();
     arrDivShow('divShow3');
@@ -125,6 +110,26 @@ function fastTwo(){
 writeTwo(text1);
 arrDivHide('divShow3');
 }
+function slowOne(){
+    clearFields2();
+    arrDivShow('divShow2');
+    i = indexBotton();
+    brakes(arrAll[i]);
+    arrSpeed= arrAll[i].showThrusters();
+    console.log(arrSpeed);
+    let sumNum: number = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[i].showMaxPower();
+    let sumNum2: number = addNum(arrSpeed);
+    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
+    text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
+    writeOne(text);
+    (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` : 
+                     text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
+    writeTwo(text1);
+    arrDivHide('divShow2');
+}
+
 function slowTwo(){
     clearFields2();
     arrDivShow('divShow3');
@@ -167,22 +172,22 @@ function arrDivHide(str: string): void{
     
 }
 
-function threeThrusters(str: string){
+function numThrusters(str: string, num: number){
 
     clearFields();
     clearFields2();
 
     let findMe: any = checkNameRockets(str);
     if(findMe != undefined) {
-        text = ` ${str} rocket is already in the database`; 
+        rocketIn(str);
     } else {
         // create the object
         newRocket(str);
-        newThrusters(arrThree);
+        (num === 3) ? newThrusters(arrThree) : newThrusters(arrSix);
         console.log(arrAll);
-        text = `${rocket.toString()}`;
-        text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
-
+        writeText(rocket);
+        writeText1(rocket);
+        
     }
     console.log(text);
     console.log(text1);
@@ -190,29 +195,8 @@ function threeThrusters(str: string){
     writeTwo(text1);
     
 
-}
-function sixThrusters(str: string){
+} // end number thrusters
 
-    clearFields();
-    clearFields2();
-
-    let findMe: any = checkNameRockets(str); 
-    if(findMe != undefined) {
-        text = ` ${str} rocket is already in the database`; 
-    } else {
-        // create the object
-        newRocket(str);
-        newThrusters(arrSix);
-        console.log(arrAll);
-        text = `${rocket.toString()}`;
-        text1 = (` ${rocket.myName}: ${rocket.showThrusters()}`);
-
-    }
-    console.log(text);
-    console.log(text1);
-    writeOne(text);
-    writeTwo(text1);
-} 
 function faster(obj: Rocket){
     obj.accelerate();
     console.log(obj);
@@ -243,7 +227,6 @@ function indexBotton(){
 }
 //check if it is in the arr 
 function checkNameRockets(str: string){
-
 let findMe: undefined | Rocket = arrAll.find((element: Rocket) => element.myName == str);
 console.log(findMe)
 return findMe;
@@ -265,7 +248,7 @@ function myName() {
     // if already entered
     inputName = polishName(inputName);
     // regex name
-    let reGex: RegExp = /[0-9]{2}[A-Za-z]{4}/;
+    let reGex: RegExp = /[0-9]{2}[A-Za-z]{6}/;
     found = (reGex.test(inputName));
     //first check
     while((inputName == "" || found == false) && counter < 3) {
@@ -312,13 +295,22 @@ function finalMistake(){
     
 }
 // print in screen
-function writeOne(str: string){
+function writeOne(str: string): string{
     clearFields();
     return writeMe.textContent = str;
 }
-function writeTwo(str: string){
+function writeTwo(str: string): string{
     clearFields2();
     return writeMe2.textContent = str;
+}
+function writeText(obj: Rocket){
+    return text = `${obj.toString()}`;
+}
+function writeText1(obj: Rocket){
+    return text1 = (` ${obj.myName}: ${obj.showThrusters()}`);
+}
+function rocketIn(str: string): string {
+    return text = ` ${str} rocket is already in the database`; 
 }
 // clear and check if it works
 function clearFields(){
