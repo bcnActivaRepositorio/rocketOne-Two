@@ -13,7 +13,7 @@ var rocket2;
 // get to action fakes
 document.getElementById('boton1').addEventListener('click', createOne);
 document.getElementById('boton7').addEventListener('click', createTwo);
-document.getElementById('boton8').addEventListener('click', realOne);
+//(document.getElementById('boton8') as HTMLInputElement).addEventListener('click', realOne);
 document.getElementById('boton3').addEventListener('click', fastOne);
 document.getElementById('boton4').addEventListener('click', slowOne);
 document.getElementById('boton5').addEventListener('click', fastTwo);
@@ -34,7 +34,7 @@ var arrCopy = new Array;
 var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
 // lets get real
-document.querySelector('#boton2').addEventListener('click', realOne);
+//(document.querySelector('#boton2') as HTMLInputElement).addEventListener('click',realOne);
 function createOne() {
     let name = ("32HJKLFR");
     let num = 3;
@@ -50,18 +50,19 @@ function createTwo() {
     displayFields('divShow3');
 }
 // "One ring to rule them all" (J.R.R. Tolkien)
-function realOne() {
+/* function realOne(){
     console.log('real works');
     clearFields();
     clearFields2();
     displayFields('divShow1');
     // data from name
-    let name = myName();
+    let name: string = myName();
     // data from number
     let numbers = myNumber();
     // keep functions outside
-    (numbers == 3 || 6) ? numThrusters(name, numbers) : finalMistake();
-}
+    ( numbers == 3 || 6) ? numThrusters(name, numbers)  : finalMistake();
+
+} */
 function fastOne() {
     clearFields2();
     arrDivShow('divShow2');
@@ -77,6 +78,25 @@ function fastOne() {
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     writeOne(text);
     (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` :
+        text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
+    writeTwo(text1);
+    arrDivHide('divShow2');
+}
+function slowOne() {
+    clearFields2();
+    arrDivShow('divShow2');
+    i = indexBotton();
+    brakes(arrAll[i]);
+    arrSpeed = arrAll[i].showThrusters();
+    console.log(arrSpeed);
+    let sumNum = addNum(arrSpeed);
+    console.log(sumNum);
+    arrSpeed = arrAll[i].showMaxPower();
+    let sumNum2 = addNum(arrSpeed);
+    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
+    text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
+    writeOne(text);
+    (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` :
         text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     writeTwo(text1);
     arrDivHide('divShow2');
@@ -100,25 +120,6 @@ function fastTwo() {
         text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     writeTwo(text1);
     arrDivHide('divShow3');
-}
-function slowOne() {
-    clearFields2();
-    arrDivShow('divShow2');
-    i = indexBotton();
-    brakes(arrAll[i]);
-    arrSpeed = arrAll[i].showThrusters();
-    console.log(arrSpeed);
-    let sumNum = addNum(arrSpeed);
-    console.log(sumNum);
-    arrSpeed = arrAll[i].showMaxPower();
-    let sumNum2 = addNum(arrSpeed);
-    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
-    text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
-    writeOne(text);
-    (sumNum2 == 0) ? text1 = `Full power available. MaxPower of ${sumNum2} to be reached` :
-        text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
-    writeTwo(text1);
-    arrDivHide('divShow2');
 }
 function slowTwo() {
     clearFields2();
