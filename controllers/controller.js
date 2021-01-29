@@ -1,19 +1,16 @@
 "use strict";
 console.log("controller ts works");
+// instanciamos
 var rocket;
 var thruster;
 var arrAll = new Array;
 // array for power numbers
 var arrThree = new Array;
 var arrSix = new Array;
-// fake ones
-var rocket1;
-var rocket2;
 //add visible fakes
 // get to action fakes
-var buttOne = document.getElementById('boton1').addEventListener('click', createOne);
-var buttTwo = document.getElementById('boton7').addEventListener('click', createTwo);
-// (document.getElementById('boton8') as HTMLInputElement).addEventListener('click', displayFields2);
+document.getElementById('boton1').addEventListener('click', createOne);
+document.getElementById('boton7').addEventListener('click', createTwo);
 // helpers
 var counter = 0;
 var i = 0;
@@ -29,7 +26,10 @@ var arrCopy = new Array;
 // print me 
 var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
+// fake rockets pressed by user
 function createOne() {
+    clearFields();
+    clearFields2();
     var name = ("32HJKLFR");
     var num = 3;
     numThrusters(name, num);
@@ -37,6 +37,8 @@ function createOne() {
     displayFields('divShow4');
 }
 function createTwo() {
+    clearFields();
+    clearFields2();
     var name = ("LDSFJA32");
     var num = 6;
     numThrusters(name, num);
@@ -44,19 +46,31 @@ function createTwo() {
 }
 console.log(arrAll);
 // "One ring to rule them all" (J.R.R. Tolkien)
+// now function takes parameter from onclick in html
 function fastOne(str) {
+    // clear fields form
+    clearFields();
     clearFields2();
+    // add class visible
     arrDivShow(str);
+    // take an index of the arr of objects from the class visible
     i = indexBotton();
+    // accelerate the rocket from the index in the arr of bjects
     faster(arrAll[i]);
+    // class method to show the thrusters
     arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
+    // what speed is left thrusters
     var sumNum = addNum(arrSpeed);
     console.log(sumNum);
+    // print max power total
     arrSpeed = arrAll[i].showMaxPower();
+    // what speed is IN the race from thrusters
     var sumNum2 = addNum(arrSpeed);
+    // print two powers
     console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
     text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    // conditionals toprint
     writeOne(text);
     (sumNum == 0) ? text1 = "No more power available. MaxPower of " + sumNum2 + " reached" :
         text1 = (" " + arrAll[i].myName + ": " + arrAll[i].showThrusters());
@@ -64,6 +78,7 @@ function fastOne(str) {
     arrDivHide(str);
 }
 function slowOne(str) {
+    clearFields();
     clearFields2();
     arrDivShow(str);
     i = indexBotton();
@@ -84,19 +99,6 @@ function slowOne(str) {
 }
 console.log(arrAll);
 /******************************AUX FUNCTIONS**************************************/
-// show the element in the screen
-function displayFields(str) {
-    document.getElementById(str).classList.remove('d-none');
-}
-function displayFields2() {
-    displayFields('divShow1');
-}
-function arrDivShow(str) {
-    document.getElementById(str).classList.add('visible');
-}
-function arrDivHide(str) {
-    document.getElementById(str).classList.remove('visible');
-}
 // number of thrusters revisited
 function numThrusters(str, num) {
     clearFields();
@@ -116,6 +118,8 @@ function numThrusters(str, num) {
     console.log(text);
     console.log(text1);
     writeOne(text);
+    text = lastword(text);
+    (text == 'database') ? text1 = "" : text1;
     writeTwo(text1);
 } // end number thrusters
 function faster(obj) {
@@ -128,7 +132,7 @@ function brakes(obj) {
     console.log(obj);
     return obj;
 }
-// find the index of the boton
+// find the index of the button who accianates either power or brake
 function indexBotton() {
     var findDiv = (document.getElementsByClassName("showDiv"));
     var pickMe = document.getElementsByClassName("visible");
@@ -150,6 +154,7 @@ function checkNameRockets(str) {
     console.log(findMe);
     return findMe;
 }
+// not in use yet
 function positionArr() {
     var num = "0";
     for (num in arrAll) {
@@ -178,6 +183,7 @@ function myName() {
     // go and fly by yourself
     return inputName;
 }
+// make sure user makes no mistakes
 function polishName(str) {
     str = str.replace(/\s/g, "");
     str = str.toUpperCase();
@@ -187,6 +193,7 @@ function polishName(str) {
 function myNumber() {
     var thrusters = parseInt(document.getElementById('numberThrusters').value);
     counter = 0;
+    //check numbers
     while (counter < 3 && (isNaN(thrusters))) {
         text = ("You really must pick up one of the choices below");
         writeOne(text);
@@ -202,39 +209,3 @@ var newRocket = function (str) { return arrAll.push(rocket = new Rocket(str)); }
 var newThrusters = function (arr) { return arr.map(function (e) { return rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)); }); };
 // add operations arr
 var addNum = function (arr) { return arr.reduce(function (a, b) { return a + b; }); };
-// final mistake
-function finalMistake() {
-    console.log(" A 404(Not Found) Error. Start again pls");
-    writeMe.innerHTML = " A 404(Not Found) Error. Start again pls";
-}
-// print in screen
-function writeOne(str) {
-    clearFields();
-    return writeMe.textContent = str;
-}
-function writeTwo(str) {
-    clearFields2();
-    return writeMe2.textContent = str;
-}
-function writeText(obj) {
-    return text = "" + obj.toString();
-}
-function writeText1(obj) {
-    return text1 = (" " + obj.myName + ": " + obj.showThrusters());
-}
-function rocketIn(str) {
-    return text = " " + str + " rocket is already in the database";
-}
-// clear and check if it works
-function clearFields() {
-    writeMe.innerText = "";
-}
-function clearFields2() {
-    writeMe2.innerText = "";
-}
-// dissapear
-function dissapear() {
-    setTimeout(function () {
-        clearFields();
-    }, 5000);
-}
