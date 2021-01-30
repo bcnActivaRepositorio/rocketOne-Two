@@ -166,50 +166,6 @@ for(num in arrAll){
     num;
 }
 }
-// Name rocket
-function myName(): string | any {
-    // data
-    // why the freeking prompt don't take string as data?? JEZZ!!!
-    let inputName: string | any = (document.querySelector("#rocketName") as HTMLInputElement).value;
-    //you watch their behaviour
-    counter = 0;
-    // if already entered
-    inputName = polishName(inputName);
-    // regex name
-    let reGex: RegExp = /[0-9]{2}[A-Za-z]{6}/;
-    found = (reGex.test(inputName));
-    //first check
-    while((inputName == "" || found == false) && counter < 3) {
-        inputName = prompt(`Type the name of the rocket. You have ${2 - counter} more tries`);
-        inputName = polishName(inputName);
-        found = (reGex.test(inputName));
-        counter++;
-    }
-        // go and fly by yourself
-        return inputName;
-}
-// make sure user makes no mistakes
-function polishName(str: string){
-    str = str.replace(/\s/g, "");
-    str = str.toUpperCase();
-        return str;  
- }
- // number thrusters
- function myNumber(){
-
-    let thrusters: number = parseInt((document.getElementById('numberThrusters')as HTMLInputElement).value);
-    counter = 0;
-    //check numbers
-    while (counter < 3 && (isNaN(thrusters))) {
-        text = ("You really must pick up one of the choices below");
-        writeOne(text);
-        thrusters = parseInt((document.getElementById('numberThrusters')as HTMLInputElement).value);
-        counter++;
-    }
-    (counter == 3 && isNaN(thrusters)) ? finalMistake() : thrusters;
-    console.log(thrusters);
-    return thrusters;
-}
 // creation of objects
 const newRocket    = (str: string) => arrAll.push(rocket = new Rocket(str));
 const newThrusters = (arr: any[]) => arr.map((e: number) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
