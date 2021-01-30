@@ -1,5 +1,6 @@
 "use strict"
 console.log("rockets ts works");
+
 class Rocket {
     // atributos
     private name: string;

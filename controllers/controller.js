@@ -11,6 +11,10 @@ var arrSix = new Array;
 // get to action fakes
 document.getElementById('boton1').addEventListener('click', createOne);
 document.getElementById('boton7').addEventListener('click', createTwo);
+var button3 = document.getElementById('boton3');
+var button4 = document.getElementById('boton4');
+var button5 = document.getElementById('boton5');
+var button6 = document.getElementById('boton6');
 // helpers
 var counter = 0;
 var i = 0;
@@ -47,7 +51,7 @@ function createTwo() {
 console.log(arrAll);
 // "One ring to rule them all" (J.R.R. Tolkien)
 // now function takes parameter from onclick in html
-function fastOne(str) {
+function fastOne(str, str2) {
     // clear fields form
     clearFields();
     clearFields2();
@@ -55,8 +59,10 @@ function fastOne(str) {
     arrDivShow(str);
     // take an index of the arr of objects from the class visible
     i = indexBotton();
+    // check which buttons were click
+    (str2 == 'boton3' || str2 == 'boton5') ? faster(arrAll[i]) : brakes(arrAll[i]);
     // accelerate the rocket from the index in the arr of bjects
-    faster(arrAll[i]);
+    // faster(arrAll[i]);
     // class method to show the thrusters
     arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
@@ -77,26 +83,8 @@ function fastOne(str) {
     writeTwo(text1);
     arrDivHide(str);
 }
-function slowOne(str) {
-    clearFields();
-    clearFields2();
-    arrDivShow(str);
-    i = indexBotton();
-    brakes(arrAll[i]);
-    arrSpeed = arrAll[i].showThrusters();
-    console.log(arrSpeed);
-    var sumNum = addNum(arrSpeed);
-    console.log(sumNum);
-    arrSpeed = arrAll[i].showMaxPower();
-    var sumNum2 = addNum(arrSpeed);
-    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
-    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
-    writeOne(text);
-    (sumNum2 == 0) ? text1 = "Full power available. MaxPower of " + sumNum2 + " to be reached" :
-        text1 = (" " + arrAll[i].myName + ": " + arrAll[i].showThrusters());
-    writeTwo(text1);
-    arrDivHide(str);
-}
+// no longer needed as parameters helped
+// function slowOne same as above but chenges to brakes(arrAll[i])
 console.log(arrAll);
 /******************************AUX FUNCTIONS**************************************/
 // number of thrusters revisited
@@ -110,7 +98,8 @@ function numThrusters(str, num) {
     else {
         // create the object
         newRocket(str);
-        (num === 3) ? newThrusters(arrThree) : newThrusters(arrSix);
+        (num === 3) ? newThrusters(arrThree) :
+            (num === 6) ? newThrusters(arrSix) : finalMistake();
         console.log(arrAll);
         writeText(rocket);
         writeText1(rocket);
