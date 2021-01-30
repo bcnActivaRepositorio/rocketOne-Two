@@ -58,7 +58,7 @@ console.log(arrAll);
 
 // "One ring to rule them all" (J.R.R. Tolkien)
 // now function takes parameter from onclick in html
-function fastOne(str: string, str2: string){
+function fastOne(str: string, num: number){
     // clear fields form
     clearFields();
     clearFields2();
@@ -67,7 +67,7 @@ function fastOne(str: string, str2: string){
     // take an index of the arr of objects from the class visible
     i = indexBotton();
     // check which buttons were click
-    (str2 == 'boton3' || str2 == 'boton5') ? faster(arrAll[i]) : brakes(arrAll[i]);
+    (num % 2 == 0) ?  brakes(arrAll[i]) : faster(arrAll[i]);
     // accelerate the rocket from the index in the arr of bjects
     // faster(arrAll[i]);
     // class method to show the thrusters
@@ -222,3 +222,5 @@ const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);
 // https://stackoverflow.com/questions/49062640/unable-to-cast-htmlselectelement-in-typescript/49063277
 // last word
 // https://stackoverflow.com/questions/20883404/javascript-returning-the-last-word-in-a-string
+// odd even
+// https://stackoverflow.com/questions/6211613/testing-whether-a-value-is-odd-or-even
