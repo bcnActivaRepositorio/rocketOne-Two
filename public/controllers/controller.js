@@ -156,8 +156,8 @@ const newThrusters = (arr) => arr.map((e) => rocket.addArrThrusters(thruster = n
 // add operations arr
 const addNum = (arr) => arr.reduce((a, b) => a + b);
 // boton
-var rockeButton = document.querySelector('#boton3');
-var rockeButton1 = document.querySelector('#boton4');
+var rockeButton = document.querySelector('#boton3').addEventListener('click', moveRocket);
+var rockeButton1 = document.querySelector('#boton4').addEventListener('click', stopRocket);
 var rocketHtml = document.querySelector('#rocket');
 function moveRocket() {
     rocketHtml.classList.add('clicked');
