@@ -155,4 +155,14 @@ const newRocket = (str) => arrAll.push(rocket = new Rocket(str));
 const newThrusters = (arr) => arr.map((e) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
 // add operations arr
 const addNum = (arr) => arr.reduce((a, b) => a + b);
+// boton
+var rockeButton = document.querySelector('#boton3');
+var rockeButton1 = document.querySelector('#boton4');
+var rocketHtml = document.querySelector('#rocket');
+function moveRocket() {
+    rocketHtml.classList.add('clicked');
+}
+function stopRocket() {
+    rocketHtml.classList.remove('clicked');
+}
 //# sourceMappingURL=controller.js.map

@@ -173,6 +173,18 @@ const newThrusters = (arr: number[]) => arr.map((e: number) => rocket.addArrThru
 // add operations arr
 const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);
 
+// boton
+var rockeButton = (document.querySelector('#boton3') as HTMLInputElement);
+var rockeButton1 = (document.querySelector('#boton4') as HTMLInputElement);
+var rocketHtml = (document.querySelector('#rocket') as HTMLInputElement);
+
+ 
+ function moveRocket(){
+     rocketHtml.classList.add('clicked');
+ }
+ function stopRocket(){
+    rocketHtml.classList.remove('clicked');
+ }
 // DOCUMENTATION
 // get elements type
 // https://stackoverflow.com/questions/49062640/unable-to-cast-htmlselectelement-in-typescript/49063277
@@ -180,3 +192,5 @@ const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);
 // https://stackoverflow.com/questions/20883404/javascript-returning-the-last-word-in-a-string
 // odd even
 // https://stackoverflow.com/questions/6211613/testing-whether-a-value-is-odd-or-even
+// two actions same botton
+// https://stackoverflow.com/questions/16025138/call-two-functions-from-same-onclick
