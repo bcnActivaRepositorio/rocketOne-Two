@@ -5,8 +5,8 @@ var rocket;
 var thruster;
 var arrAll = new Array;
 // array for power numbers
-var arrThree = new Array;
-var arrSix = new Array;
+var arrThree = [];
+var arrSix = [];
 //add visible fakes
 // get to action fakes
 document.getElementById('boton1').addEventListener('click', createOne);
@@ -21,8 +21,8 @@ var i = 0;
 var found = false;
 var text = "";
 var text1 = "";
-var arrSix = [30, 40, 50, 50, 30, 10];
-var arrThree = [10, 30, 80];
+arrSix = [30, 40, 50, 50, 30, 10];
+arrThree = [10, 30, 80];
 var maxSpeed = 0;
 // containers to display results
 var arrSpeed = new Array;
@@ -34,8 +34,8 @@ var writeMe2 = document.querySelector('#textMe2');
 function createOne() {
     clearFields();
     clearFields2();
-    var name = ("32HJKLFR");
-    var num = 3;
+    let name = ("32HJKLFR");
+    let num = 3;
     numThrusters(name, num);
     displayFields('divShow2');
     displayFields('divShow4');
@@ -43,8 +43,8 @@ function createOne() {
 function createTwo() {
     clearFields();
     clearFields2();
-    var name = ("LDSFJA32");
-    var num = 6;
+    let name = ("LDSFJA32");
+    let num = 6;
     numThrusters(name, num);
     displayFields('divShow3');
 }
@@ -67,19 +67,19 @@ function fastOne(str, num) {
     arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
     // what speed is left thrusters
-    var sumNum = addNum(arrSpeed);
+    let sumNum = addNum(arrSpeed);
     console.log(sumNum);
     // print max power total
     arrSpeed = arrAll[i].showMaxPower();
     // what speed is IN the race from thrusters
-    var sumNum2 = addNum(arrSpeed);
+    let sumNum2 = addNum(arrSpeed);
     // print two powers
-    console.log("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
-    text = ("MaxPower at the moment: " + sumNum2 + ". Power remaining: " + sumNum);
+    console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
+    text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     // conditionals toprint
     writeOne(text);
-    (sumNum == 0) ? text1 = "No more power available. MaxPower of " + sumNum2 + " reached" :
-        text1 = (" " + arrAll[i].myName + ": " + arrAll[i].showThrusters());
+    (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` :
+        text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     writeTwo(text1);
     arrDivHide(str);
 }
@@ -91,7 +91,7 @@ console.log(arrAll);
 function numThrusters(str, num) {
     clearFields();
     clearFields2();
-    var findMe = checkNameRockets(str);
+    let findMe = checkNameRockets(str);
     if (findMe != undefined) {
         rocketIn(str);
     }
@@ -123,13 +123,13 @@ function brakes(obj) {
 }
 // find the index of the button who accianates either power or brake
 function indexBotton() {
-    var findDiv = (document.getElementsByClassName("showDiv"));
-    var pickMe = document.getElementsByClassName("visible");
+    let findDiv = (document.getElementsByClassName("showDiv"));
+    let pickMe = document.getElementsByClassName("visible");
     counter = 0;
-    for (var i_1 = 0; i_1 < findDiv.length; i_1++) {
-        if (findDiv[i_1].isEqualNode(pickMe[0])) {
+    for (let i = 0; i < findDiv.length; i++) {
+        if (findDiv[i].isEqualNode(pickMe[0])) {
             console.log("finally worked");
-            counter = i_1;
+            counter = i;
         }
         else {
             console.log("Keep searching");
@@ -139,19 +139,20 @@ function indexBotton() {
 }
 //check if it is in the arr 
 function checkNameRockets(str) {
-    var findMe = arrAll.find(function (element) { return element.myName == str; });
+    let findMe = arrAll.find((element) => element.myName == str);
     console.log(findMe);
     return findMe;
 }
 // not in use yet
 function positionArr() {
-    var num = "0";
+    let num = "0";
     for (num in arrAll) {
         num;
     }
 }
 // creation of objects
-var newRocket = function (str) { return arrAll.push(rocket = new Rocket(str)); };
-var newThrusters = function (arr) { return arr.map(function (e) { return rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)); }); };
+const newRocket = (str) => arrAll.push(rocket = new Rocket(str));
+const newThrusters = (arr) => arr.map((e) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
 // add operations arr
-var addNum = function (arr) { return arr.reduce(function (a, b) { return a + b; }); };
+const addNum = (arr) => arr.reduce((a, b) => a + b);
+//# sourceMappingURL=controller.js.map

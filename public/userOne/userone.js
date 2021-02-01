@@ -7,9 +7,9 @@ function realOne() {
     clearFields2();
     displayFields('divShow1');
     // data from name
-    var name = myName();
+    let name = myName();
     // data from number
-    var numbers = myNumber();
+    let numbers = myNumber();
     // keep functions outside
     (numbers == 3 || 6) ? numThrusters(name, numbers) : finalMistake();
 }
@@ -17,17 +17,17 @@ function realOne() {
 function myName() {
     // data
     // why the freeking prompt don't take string as data?? JEZZ!!!
-    var inputName = document.querySelector("#rocketName").value;
+    let inputName = document.querySelector("#rocketName").value;
     //you watch their behaviour
     counter = 0;
     // if already entered
     inputName = polishName(inputName);
     // regex name
-    var reGex = /[0-9]{2}[A-Za-z]{6}/;
+    let reGex = /[0-9]{2}[A-Za-z]{6}/;
     found = (reGex.test(inputName));
     //first check
     while ((inputName == "" || found == false) && counter < 3) {
-        inputName = prompt("Type the name of the rocket. You have " + (2 - counter) + " more tries");
+        inputName = prompt(`Type the name of the rocket. You have ${2 - counter} more tries`);
         inputName = polishName(inputName);
         found = (reGex.test(inputName));
         counter++;
@@ -43,7 +43,7 @@ function polishName(str) {
 }
 // number thrusters
 function myNumber() {
-    var thrusters = parseInt(document.getElementById('numberThrusters').value);
+    let thrusters = parseInt(document.getElementById('numberThrusters').value);
     counter = 0;
     //check numbers
     while (counter < 3 && (isNaN(thrusters))) {
@@ -56,3 +56,4 @@ function myNumber() {
     console.log(thrusters);
     return thrusters;
 }
+//# sourceMappingURL=userone.js.map

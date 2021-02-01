@@ -6,8 +6,8 @@ var thruster: Thruster;
 var arrAll:   Rocket[] = new Array;
 
 // array for power numbers
-var arrThree: Number[] = new Array;
-var arrSix:   Number[] = new Array;
+var arrThree: number[] = [];
+var arrSix:   number[] = [];
 
 //add visible fakes
 // get to action fakes
@@ -20,12 +20,12 @@ var button6 = (document.getElementById('boton6') as HTMLInputElement);
 
 // helpers
 var counter: number = 0;
-var i: number | any = 0;
-var found:  boolean = false;
-var text:   string  = "";
-var text1:  string  = "";
-var arrSix:   Number[] = [30, 40, 50, 50, 30, 10];
-var arrThree: Number[] = [10, 30, 80];
+var i:       number  = 0;
+var found:   boolean = false;
+var text:    string  = "";
+var text1:   string  = "";
+arrSix   =   [30, 40, 50, 50, 30, 10];
+arrThree =   [10, 30, 80];
 var maxSpeed: number = 0;
 
 // containers to display results
@@ -102,7 +102,7 @@ function numThrusters(str: string, num: number){
     clearFields();
     clearFields2();
 
-    let findMe: any = checkNameRockets(str);
+    let findMe: Rocket | undefined = checkNameRockets(str);
     if(findMe != undefined) {
         rocketIn(str);
     } else {
@@ -168,7 +168,7 @@ for(num in arrAll){
 }
 // creation of objects
 const newRocket    = (str: string) => arrAll.push(rocket = new Rocket(str));
-const newThrusters = (arr: any[]) => arr.map((e: number) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
+const newThrusters = (arr: number[]) => arr.map((e: number) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
 
 // add operations arr
 const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);

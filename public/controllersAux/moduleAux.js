@@ -24,13 +24,13 @@ function writeTwo(str) {
     return writeMe2.textContent = str;
 }
 function writeText(obj) {
-    return text = "" + obj.toString();
+    return text = `${obj.toString()}`;
 }
 function writeText1(obj) {
-    return text1 = (" " + obj.myName + ": " + obj.showThrusters());
+    return text1 = (` ${obj.myName}: ${obj.showThrusters()}`);
 }
 function rocketIn(str) {
-    return text = " " + str + " rocket is already in the database";
+    return text = ` ${str} rocket is already in the database`;
 }
 // clear and check if it works
 function clearFields() {
@@ -41,13 +41,14 @@ function clearFields2() {
 }
 // find last word of string to help clearfields2
 function lastword(str) {
-    var word = str.split(" ");
+    let word = str.split(" ");
     word = word[word.length - 1];
     return word;
 }
 // dissapear
 function dissapear() {
-    setTimeout(function () {
+    setTimeout(() => {
         clearFields();
     }, 5000);
 }
+//# sourceMappingURL=moduleAux.js.map
