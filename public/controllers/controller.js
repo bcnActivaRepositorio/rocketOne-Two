@@ -30,6 +30,8 @@ var arrCopy = new Array;
 // print me 
 var writeMe = document.querySelector('#textMe');
 var writeMe2 = document.querySelector('#textMe2');
+var writeMe3 = document.querySelector('#textMe3');
+var writeMe4 = document.querySelector('#textMe4');
 // fake rockets pressed by user
 function createOne() {
     clearFields();
@@ -41,8 +43,8 @@ function createOne() {
     displayFields('divShow4');
 }
 function createTwo() {
-    clearFields();
-    clearFields2();
+    clearFields3();
+    clearFields4();
     let name = ("LDSFJA32");
     let num = 6;
     numThrusters(name, num);
@@ -52,9 +54,6 @@ console.log(arrAll);
 // "One ring to rule them all" (J.R.R. Tolkien)
 // now function takes parameter from onclick in html
 function fastOne(str, num) {
-    // clear fields form
-    clearFields();
-    clearFields2();
     // add class visible
     arrDivShow(str);
     // take an index of the arr of objects from the class visible
@@ -77,10 +76,10 @@ function fastOne(str, num) {
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     // conditionals toprint
-    writeOne(text);
+    (str == 'divShow2') ? writeOne(text) : writeThree(text);
     (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` :
         text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
-    writeTwo(text1);
+    (str == 'divShow2') ? writeTwo(text1) : writeFour(text1);
     arrDivHide(str);
 }
 // no longer needed as parameters helped
@@ -89,8 +88,15 @@ console.log(arrAll);
 /******************************AUX FUNCTIONS**************************************/
 // number of thrusters revisited
 function numThrusters(str, num) {
-    clearFields();
-    clearFields2();
+    // six shouldn't clean
+    if (num === 3) {
+        clearFields();
+        clearFields2();
+    }
+    else {
+        clearFields3();
+        clearFields4();
+    }
     let findMe = checkNameRockets(str);
     if (findMe != undefined) {
         rocketIn(str);
@@ -106,10 +112,10 @@ function numThrusters(str, num) {
     }
     console.log(text);
     console.log(text1);
-    writeOne(text);
+    (num === 3) ? writeOne(text) : writeThree(text);
     text = lastword(text);
     (text == 'database') ? text1 = "" : text1;
-    writeTwo(text1);
+    (num === 3) ? writeTwo(text1) : writeFour(text1);
 } // end number thrusters
 function faster(obj) {
     obj.accelerate();
@@ -155,14 +161,4 @@ const newRocket = (str) => arrAll.push(rocket = new Rocket(str));
 const newThrusters = (arr) => arr.map((e) => rocket.addArrThrusters(thruster = new Thruster(e, maxSpeed)));
 // add operations arr
 const addNum = (arr) => arr.reduce((a, b) => a + b);
-// boton
-var rockeButton = document.querySelector('#boton3').addEventListener('click', moveRocket);
-var rockeButton1 = document.querySelector('#boton4').addEventListener('click', stopRocket);
-var rocketHtml = document.querySelector('#rocket');
-function moveRocket() {
-    rocketHtml.classList.add('clicked');
-}
-function stopRocket() {
-    rocketHtml.classList.remove('clicked');
-}
 //# sourceMappingURL=controller.js.map

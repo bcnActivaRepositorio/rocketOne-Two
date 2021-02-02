@@ -35,6 +35,8 @@ var arrCopy:  Rocket[] = new Array;
 // print me 
 var writeMe  = (<HTMLSelectElement>document.querySelector('#textMe'));
 var writeMe2 = (document.querySelector('#textMe2')as HTMLSelectElement);
+var writeMe3  = (<HTMLSelectElement>document.querySelector('#textMe3'));
+var writeMe4 = (document.querySelector('#textMe4')as HTMLSelectElement);
 
 // fake rockets pressed by user
 function createOne(){
@@ -47,8 +49,8 @@ let num:  number = 3;
   displayFields('divShow4');
 }
 function createTwo(){
-    clearFields();
-    clearFields2();
+    clearFields3();
+    clearFields4();
 let name: string = ("LDSFJA32");
 let num:  number = 6;
 numThrusters(name, num);
@@ -59,9 +61,6 @@ console.log(arrAll);
 // "One ring to rule them all" (J.R.R. Tolkien)
 // now function takes parameter from onclick in html
 function fastOne(str: string, num: number){
-    // clear fields form
-    clearFields();
-    clearFields2();
     // add class visible
     arrDivShow(str);
     // take an index of the arr of objects from the class visible
@@ -84,11 +83,12 @@ function fastOne(str: string, num: number){
     console.log(`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     text = (`MaxPower at the moment: ${sumNum2}. Power remaining: ${sumNum}`);
     // conditionals toprint
-    writeOne(text);
+    (str == 'divShow2') ? writeOne(text) : writeThree(text);
+    
     (sumNum == 0) ? text1 = `No more power available. MaxPower of ${sumNum2} reached` : 
                     text1 = (` ${arrAll[i].myName}: ${arrAll[i].showThrusters()}`);
     
-    writeTwo(text1);
+    (str == 'divShow2') ? writeTwo(text1) : writeFour(text1);
     arrDivHide(str);
 }
 // no longer needed as parameters helped
@@ -98,9 +98,15 @@ console.log(arrAll);
 
 // number of thrusters revisited
 function numThrusters(str: string, num: number){
-
-    clearFields();
-    clearFields2();
+    // six shouldn't clean
+     if( num === 3){
+        clearFields();
+        clearFields2();
+     }else {
+        clearFields3();
+        clearFields4();
+     }
+    
 
     let findMe: Rocket | undefined = checkNameRockets(str);
     if(findMe != undefined) {
@@ -117,10 +123,10 @@ function numThrusters(str: string, num: number){
     }
     console.log(text);
     console.log(text1);
-    writeOne(text);
+    (num === 3) ? writeOne(text) : writeThree(text);
     text = lastword(text);
     (text == 'database') ? text1 = "" : text1;
-    writeTwo(text1);
+    (num === 3) ? writeTwo(text1) : writeFour(text1);
     
 
 } // end number thrusters
@@ -173,18 +179,7 @@ const newThrusters = (arr: number[]) => arr.map((e: number) => rocket.addArrThru
 // add operations arr
 const addNum = (arr: number[]) => arr.reduce((a: number, b: number) => a + b);
 
-// boton
-var rockeButton = (document.querySelector('#boton3') as HTMLInputElement).addEventListener('click', moveRocket);
-var rockeButton1 = (document.querySelector('#boton4') as HTMLInputElement).addEventListener('click',stopRocket);
-var rocketHtml = (document.querySelector('#rocket') as HTMLInputElement);
 
- 
- function moveRocket(){
-     rocketHtml.classList.add('clicked');
- }
- function stopRocket(){
-    rocketHtml.classList.remove('clicked');
- }
 // DOCUMENTATION
 // get elements type
 // https://stackoverflow.com/questions/49062640/unable-to-cast-htmlselectelement-in-typescript/49063277

@@ -23,6 +23,14 @@ function writeTwo(str) {
     clearFields2();
     return writeMe2.textContent = str;
 }
+function writeThree(str) {
+    clearFields3();
+    return writeMe3.textContent = str;
+}
+function writeFour(str) {
+    clearFields4();
+    return writeMe4.textContent = str;
+}
 function writeText(obj) {
     return text = `${obj.toString()}`;
 }
@@ -38,6 +46,12 @@ function clearFields() {
 }
 function clearFields2() {
     writeMe2.innerText = "";
+}
+function clearFields3() {
+    writeMe3.innerText = "";
+}
+function clearFields4() {
+    writeMe4.innerText = "";
 }
 // find last word of string to help clearfields2
 function lastword(str) {
