@@ -18,8 +18,7 @@ class Rocket {
         this.name = name;
     }
     // methods therefore comportament
-    public addArrThrusters(thruster: Thruster){
-
+    public addArrThrusters(thruster: Thruster): void{
         this.arrThrusters.push(thruster);
     }
     public showThrusters(){

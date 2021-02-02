@@ -104,8 +104,6 @@ function numThrusters(str: string, num: number){
         clearFields3();
         clearFields4();
      }
-    
-
     let findMe: Rocket | undefined = checkNameRockets(str);
     if(findMe != undefined) {
         rocketIn(str);
