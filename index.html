@@ -35,11 +35,11 @@
                 <p class="lead">A CMV OOP exercise from the IT Academy (@BcnActiva).</p>
                 <p class="lead">Crea dos cohetes y compite .</p>
                 <hr class="my-4">
-                <div class="row justify-content-center">
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="row justify-content-between align-content-between">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mb-3">
                         <a class="btn btn-info btn-lg" id="boton1" role="button">create rocket 1</a>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 mt-xs-3 d-none" id="divShow4">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 d-none" id="divShow4">
                         <a class="btn btn-info btn-lg" id="boton7" role="button">create rocket 2</a>
                     </div>
                 </div>
@@ -124,8 +124,8 @@
                                                             <circle cx="148" cy="138" r="110" />
                                                         </mask>
                                                     </defs>
-                                                   <!--  <circle id="donut" cx="148" cy="140" r="200" mask="url(#bigmask)"
-                                                        fill="#34495e" /> -->
+                                                    <circle id="donut" class="d-none"cx="148" cy="140" r="200" mask="url(#bigmask)"
+                                                        fill="#34495e" />
                                                 </svg>
 
 
@@ -139,16 +139,14 @@
                                         <div class="row justify-content-center">
                                             <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                                 <button
-                                                    class="btn btn-info text-light text-capitalize mt-2 self-align-center"
-                                                    id="boton3" type="button" onclick="fastOne('divShow2',1)">fast
-                                                    rocket1
+                                                    class="btn btn-info text-light text-uppercase font-weight-bolder mt-2 self-align-center"
+                                                    id="boton3" type="button" onclick="fastOne('divShow2',1)">+
                                                 </button>
                                             </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                                 <button
-                                                    class="btn btn-info text-light text-capitalize mt-2 self-align-center"
-                                                    id="boton4" type="button" onclick="fastOne('divShow2',2)">slow
-                                                    rocket1
+                                                    class="btn btn-info text-light text-uppercase font-weight-bolder mt-2 self-align-center "
+                                                    id="boton4" type="button" onclick="fastOne('divShow2',2)">-
                                                 </button>
                                             </div>
                                         </div>
@@ -252,8 +250,7 @@
                                                 <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                                     <button
                                                         class="btn btn-info text-light text-capitalize mt-2 self-align-center"
-                                                        id="boton5" type="button" onclick="fastOne('divShow3',3)">fast
-                                                        rocket2
+                                                        id="boton5" type="button" onclick="fastOne('divShow3',3)">+
                                                     </button>
                                                 </div>
                                                 <!--end boton1-->
@@ -261,8 +258,7 @@
                                                 <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                                     <button
                                                         class="btn btn-info text-light text-capitalize mt-2 self-align-center"
-                                                        id="boton6" type="button" onclick="fastOne('divShow3',4)">slow
-                                                        rocket2
+                                                        id="boton6" type="button" onclick="fastOne('divShow3',4)">-
                                                     </button>
                                                 </div>
                                                 <!--end boton2-->

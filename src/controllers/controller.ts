@@ -67,8 +67,6 @@ function fastOne(str: string, num: number){
     i = indexBotton();
     // check which buttons were click
     (num % 2 == 0) ?  brakes(arrAll[i]) : faster(arrAll[i]);
-    // accelerate the rocket from the index in the arr of bjects
-    // faster(arrAll[i]);
     // class method to show the thrusters
     arrSpeed = arrAll[i].showThrusters();
     console.log(arrSpeed);
